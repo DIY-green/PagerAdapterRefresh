@@ -3,6 +3,7 @@ package com.diygreen.pageradapterrefresh.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
 import com.diygreen.pageradapterrefresh.fragment.FragmentTest;
@@ -10,13 +11,19 @@ import com.diygreen.pageradapterrefresh.fragment.FragmentTest;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FSPagerAdapter extends FragmentStatePagerAdapter {
+public class FPagerAdapter11 extends FragmentStatePagerAdapter {
 
 	private ArrayList<Fragment> mFragmentList;
+	private FragmentManager mFragmentManager;
 
-	public FSPagerAdapter(FragmentManager fm, List<Integer> types) {
+	public FPagerAdapter11(FragmentManager fm, List<Integer> types) {
 		super(fm);
-		updateData(types);
+		this.mFragmentManager = fm;
+		mFragmentList = new ArrayList<>();
+		for (int i = 0, size = types.size(); i < size; i++) {
+			mFragmentList.add(FragmentTest.instance(i));
+		}
+		setFragments(mFragmentList);
 	}
 
 	public void updateData(List<Integer> dataList) {
@@ -25,14 +32,19 @@ public class FSPagerAdapter extends FragmentStatePagerAdapter {
 			Log.e("FPagerAdapter1", dataList.get(i).toString());
 			fragments.add(FragmentTest.instance(dataList.get(i)));
 		}
-		setFragmentList(fragments);
+		setFragments(fragments);
 	}
 
-	private void setFragmentList(ArrayList<Fragment> fragmentList) {
+	private void setFragments(ArrayList<Fragment> mFragmentList) {
 		if(this.mFragmentList != null){
-			mFragmentList.clear();
+			FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+			for(Fragment f:this.mFragmentList){
+				fragmentTransaction.remove(f);
+			}
+			fragmentTransaction.commit();
+			mFragmentManager.executePendingTransactions();
 		}
-		this.mFragmentList = fragmentList;
+		this.mFragmentList = mFragmentList;
 		notifyDataSetChanged();
 	}
 

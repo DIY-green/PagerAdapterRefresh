@@ -41,9 +41,20 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="FragmentPagerAdapter"
-        android:id="@+id/btn_fpageradapter"
+        android:text="FragmentPagerAdapter1"
+        android:id="@+id/btn_fpageradapter1"
         android:layout_below="@+id/btn_pageradapter"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textAllCaps="false"
+        android:onClick="onClick" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FragmentPagerAdapter2"
+        android:id="@+id/btn_fpageradapter2"
+        android:layout_below="@+id/btn_fpageradapter1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textAllCaps="false"
@@ -54,7 +65,7 @@
         android:layout_height="wrap_content"
         android:text="FragmentStatePagerAdapter"
         android:id="@+id/btn_fspageradapter"
-        android:layout_below="@+id/btn_fpageradapter"
+        android:layout_below="@+id/btn_fpageradapter2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textAllCaps="false"

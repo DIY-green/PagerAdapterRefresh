@@ -5,15 +5,16 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.diygreen.pageradapterrefresh.adapter.FPagerAdapter;
+import com.diygreen.pageradapterrefresh.adapter.FPagerAdapter2;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class FPagerAdapterActivity extends AppCompatActivity {
+public class FPagerAdapter2Activity extends AppCompatActivity {
+
     private ViewPager mContentVP;
 
-    private FPagerAdapter mPagerAdapter;
+    private FPagerAdapter2 mPagerAdapter;
     private List<Integer> mDataList;
 
     @Override
@@ -35,7 +36,7 @@ public class FPagerAdapterActivity extends AppCompatActivity {
             mDataList.add(i);
         }
 
-        mPagerAdapter = new FPagerAdapter(getSupportFragmentManager(), mDataList);
+        mPagerAdapter = new FPagerAdapter2(getSupportFragmentManager(), mDataList);
         mContentVP.setAdapter(mPagerAdapter);
     }
 
@@ -59,24 +60,23 @@ public class FPagerAdapterActivity extends AppCompatActivity {
     private void refresh() {
         if (checkData()) return;
         mDataList.set(0, 7);
-        mPagerAdapter.updateData(mDataList);
+        mPagerAdapter.update(0, "更新数据源测试");
     }
 
     private void add() {
         mDataList.add(7);
-        mPagerAdapter.updateData(mDataList);
+        mPagerAdapter.notifyDataSetChanged();
     }
 
     private void delete() {
         if (checkData()) return;
-        mDataList.remove(0);
-        mPagerAdapter.updateData(mDataList);
+        mPagerAdapter.remove(0);
     }
 
     private void clear() {
         if (checkData()) return;
         mDataList.clear();
-        mPagerAdapter.updateData(mDataList);
+        mPagerAdapter.notifyDataSetChanged();
     }
 
     private boolean checkData() {

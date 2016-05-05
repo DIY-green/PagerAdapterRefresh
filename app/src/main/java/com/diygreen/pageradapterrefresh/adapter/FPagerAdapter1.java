@@ -11,50 +11,46 @@ import com.diygreen.pageradapterrefresh.fragment.FragmentTest;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FPagerAdapter extends FragmentPagerAdapter {
+public class FPagerAdapter1 extends FragmentPagerAdapter {
 
-	private ArrayList<Fragment> fragments;
-	private List<Integer> mTypes;
-	private FragmentManager fm;
+	private ArrayList<Fragment> mFragmentList;
+	private FragmentManager mFragmentManager;
 	
-	public FPagerAdapter(FragmentManager fm, List<Integer> types) {
+	public FPagerAdapter1(FragmentManager fm, List<Integer> types) {
 		super(fm);
-		this.fm = fm;
-		this.mTypes = types;
-		fragments = new ArrayList<>();
+		this.mFragmentManager = fm;
+		mFragmentList = new ArrayList<>();
 		for (int i = 0, size = types.size(); i < size; i++) {
-			fragments.add(FragmentTest.instance(i));
+			mFragmentList.add(FragmentTest.instance(i));
 		}
-		setFragments(fragments);
+		setFragments(mFragmentList);
 	}
 
 	public void updateData(List<Integer> dataList) {
-		this.mTypes = dataList;
 		ArrayList<Fragment> fragments = new ArrayList<>();
 		for (int i = 0, size = dataList.size(); i < size; i++) {
-			Log.e("FPagerAdapter", dataList.get(i).toString());
+			Log.e("FPagerAdapter1", dataList.get(i).toString());
 			fragments.add(FragmentTest.instance(dataList.get(i)));
 		}
 		setFragments(fragments);
 	}
 
-	private void setFragments(ArrayList<Fragment> fragments) {
-		if(this.fragments != null){
-			FragmentTransaction ft = fm.beginTransaction();
-			for(Fragment f:this.fragments){
-				ft.remove(f);
+	private void setFragments(ArrayList<Fragment> mFragmentList) {
+		if(this.mFragmentList != null){
+			FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+			for(Fragment f:this.mFragmentList){
+				fragmentTransaction.remove(f);
 			}
-			ft.commit();
-			ft=null;
-			fm.executePendingTransactions();
+			fragmentTransaction.commit();
+			mFragmentManager.executePendingTransactions();
 		}
-		this.fragments = fragments;
+		this.mFragmentList = mFragmentList;
 		notifyDataSetChanged();
 	}
 
 	@Override
 	public int getCount() {
-		return this.fragments.size();
+		return this.mFragmentList.size();
 	}
 	
 	public int getItemPosition(Object object) {
@@ -63,6 +59,6 @@ public class FPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-		return fragments.get(position);
+		return mFragmentList.get(position);
     }
 }

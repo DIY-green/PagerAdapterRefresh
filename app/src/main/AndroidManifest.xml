@@ -16,9 +16,18 @@
             </intent-filter>
         </activity>
         <activity android:name=".SimpleDemoActivity" />
-        <activity android:name=".PagerAdapterActivity" />
-        <activity android:name=".FPagerAdapterActivity" />
-        <activity android:name=".FSPagerAdapterActivity"></activity>
+        <activity
+            android:name=".PagerAdapterActivity"
+            android:label="PagerAdapter" />
+        <activity
+            android:name=".FPagerAdapter1Activity"
+            android:label="FPagerAdapter1" />
+        <activity
+            android:name=".FPagerAdapter2Activity"
+            android:label="FPagerAdapter2"/>
+        <activity
+            android:name=".FSPagerAdapterActivity"
+            android:label="FSPagerAdapter" />
     </application>
 
 </manifest>

@@ -22,8 +22,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_pageradapter:
                 overlay(PagerAdapterActivity.class);
                 break;
-            case R.id.btn_fpageradapter:
-                overlay(FPagerAdapterActivity.class);
+            case R.id.btn_fpageradapter1:
+                overlay(FPagerAdapter1Activity.class);
+                break;
+            case R.id.btn_fpageradapter2:
+                overlay(FPagerAdapter2Activity.class);
                 break;
             case R.id.btn_fspageradapter:
                 overlay(FSPagerAdapterActivity.class);

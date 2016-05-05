@@ -27,6 +27,8 @@ import com.diygreen.pageradapterrefresh.R;
  */
 
 public class FragmentTest extends Fragment {
+
+    private TextView mShowTV;
     private String mCharStr;
 
     public FragmentTest() {}
@@ -62,7 +64,7 @@ public class FragmentTest extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        System.out.println(mCharStr+"____onAttach");
+        System.out.println(mCharStr + "____onAttach");
     }
 
     @Override
@@ -76,9 +78,9 @@ public class FragmentTest extends Fragment {
         System.out.println(mCharStr+"____onCreateView");
         View view = inflater.inflate(R.layout.fragment_test,
                 container, false);
-        TextView tv = (TextView) view.findViewById(R.id.hello);
+        mShowTV = (TextView) view.findViewById(R.id.hello);
         final EditText et = (EditText) view.findViewById(R.id.edit);
-        tv.setText(mCharStr);
+        mShowTV.setText(mCharStr);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -86,6 +88,12 @@ public class FragmentTest extends Fragment {
             }
         }, 5*1000);
         return view;
+    }
+
+    public void update(String str) {
+        if (mShowTV != null) {
+            mShowTV.setText(str);
+        }
     }
 
     @Override
